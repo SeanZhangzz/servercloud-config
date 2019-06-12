@@ -11,4 +11,4 @@ spring:
 spring:
   profiles: test #测试环境
   application:
-    name: servercloud-config-dev
+    name: servercloud-config-test
