@@ -1,0 +1,81 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+server:
+  port: 8001
+
+spring:
+  profiles: dev
+  application:
+    name: servercloud-config-dept-client #一个进程（微服务）唯一的标识符，如果有多个rest controller也从该名称获得访问？
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://127.0.0.1:3306/cloudDB01?serverTimezone=GMT%2B8&&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.sean.org.entity
+  mapper-locations:
+    - classpath:mybatis/mapper/*Mapper.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: servercloud-dept8001-dev #显示的名称
+    prefer-ip-address: true #显示Ip
+info:
+  app.name: sean-servercloud
+  company.name: www.sean.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+---
+server:
+  port: 8001
+
+spring:
+  profiles: test
+  application:
+    name: servercloud-config-dept-client #一个进程（微服务）唯一的标识符，如果有多个rest controller也从该名称获得访问？
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://127.0.0.1:3306/cloudDB02?serverTimezone=GMT%2B8&&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.sean.org.entity
+  mapper-locations:
+    - classpath:mybatis/mapper/*Mapper.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: servercloud-dept8001-test #显示的名称
+    prefer-ip-address: true #显示Ip
+info:
+  app.name: sean-servercloud
+  company.name: www.sean.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
